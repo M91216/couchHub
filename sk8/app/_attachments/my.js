@@ -1,12 +1,12 @@
 $(document).on("pageinit","#home", function(){
-    $.couch.db("sk8").view("app/teams", {
+    $.couch.db("sk8").view("app/skaters", {
        success: function(data) {
          //console.log(data);
          $('#homeItems').empty();
          $.each(data.rows, function(index, value) {
              var item = (value.value || value.doc);
              $('#homeItems').append($('<li>').append($('<a>')
-                      .attr("href", "team.html?team=" + item.website)
+                      .attr("href", "skater.html?skater=" + item.origin + item.type + item.sponsor + item.model)
                       .text(item.name)
              
              )
@@ -16,20 +16,31 @@ $(document).on("pageinit","#home", function(){
        }
    });
 });
+
 var urlVars = function() {
-    var urlData = $($.mobile.activePage).data("url");
+    var urlData = $(this).data("url");
     var urlParts = urlData.split('?');
     var urlPairs = urlParts[1].split('&');
     var urlValues = {};
-    for (var pair in urlPairs) {
-        var keyValue = urlPairs[pair].split('=');
-        var key = decodeURIComponent(keyValue[0]);
-        var value = decodeURIComponent(keyValue[1]);
-        urlValues[key] = value;
-    }
-    return urlValues;
- };
- $(document).on("pageinit",'#team', function(){
-    var team = urlVars()["teams"];
-    console.log(team);
+    for(var pair in urlPairs) {
+	   var keyValue = urlPairs[pair].split('=');
+	   var key = decodeURIComponent(keyValue[0]);
+	   var value = decodeURIComponent(keyValue[1]);
+	   urlValues[key] = value;
+	 }
+	 return urlValues;
+
+
+
+};
+
+$(document).on("pageinit","#skater", function(){
+  var skater = urlVars()["skater"];
+  console.log(skater);
+  
+
 });
+
+
+
+
