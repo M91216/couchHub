@@ -243,7 +243,7 @@
 .ui-body-e .ui-link-inherit{color:#333}
 .ui-body-e .ui-link{color:#f1c40f;font-weight:bold;}
 .ui-body-e .ui-link:visited,.ui-body-e .ui-link:hover,.ui-body-e .ui-link:active{color:#f4d03f}
-.ui-body-e.ui-input-text{border:0px solid #eee;-moz-border-radius: 0px;
+.ui-body-e.ui-input-text{border:0px solid #656767;-moz-border-radius: 5px;
 -webkit-border-radius: 0px;
 border-radius: 0px;}
 .ui-body-e.ui-input-text.ui-focus{border:2px solid #DCDCDC;-moz-border-radius: 0px;
@@ -354,8 +354,8 @@ input.ui-input-text.ui-slider-input {
 -----------------------------------------------------------------------------------------------------------*/
 
 .ui-corner-all {
-	-webkit-border-radius:  6px /*{global-radii-blocks}*/;
-	border-radius:  6px /*{global-radii-blocks}*/;
+	-webkit-border-radius:  0px /*{global-radii-blocks}*/;
+	border-radius:  0px /*{global-radii-blocks}*/;
 }
 
 /* Form field separator
