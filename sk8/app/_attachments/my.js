@@ -28,7 +28,7 @@ var urlVars = function(urlData) {
 	   var value = decodeURIComponent(keyValue[1]);
 	   urlValues[key] = value;
 	 }
-	 return urlValues;
+	 console.log(urlData);
 
 };
 
@@ -49,9 +49,66 @@ $(document).on("pageinit",'#skater',  function(){
 		 });
 		 $('#skaterItems').listview('refresh');
 	   }
+	  
    });
 });
 
+$(document).on("pageinit",'#skater',  function(){
+  var skater = urlVars($(this).data("url"));
+	$.couch.db("sk8").view("app/skaters", {
+	   success: function(data) {
+		 //console.log(data);
+		 $('#skaterItems').empty();
+		 $.each(data.rows, function(index, value) {
+			 var item = (value.value || value.doc);
+			 $('#skaterItems').append($('<li>').append($('<a>')
+					  .attr("href", "team.html?skater=" + item.model)
+					  .text(item.name)
+
+			 )
+			); 
+		 });
+		 $('#skaterItems').listview('refresh');
+	   }
+	  
+   });
+});
+
+$(document).on("pageinit", "#eachSkater", function () {
+
+
+$.couch.db("sk8").view("app/independent", {
+	success: function(data) {
+	  //console.log(data);
+	  $('#eachItem').empty();
+	  $.each(data.rows, function(index, value) {
+		  var item = (value.value || value.doc);
+		   //$(''+
+			   var html ='<div class="ui-body-b">';
+			   html += '<p>' + "Name:" + $item.find('name').text(item.name) +'</p>';
+
+			   html += '<p>' + "Sponsor:" + $item.find('sponsor').text(item.sponsor) +'</p>';
+
+			   html += '<p>' + "Model:" + $item.find('model').text(item.model) + '</p>';
+
+			   html += '<p>' + "Type:" + $item.find('type').text(item.type) + '</p>';
+
+			   html += '<p>' + "Origin:" + $item.find('origin').text(item.origin) + '</p>';
+
+			   
+
+
+
+			
+			   $('#eachItem').append(html);
+
+		   });
+	   }
+	  });
+
+
+
+});
 
 
 
